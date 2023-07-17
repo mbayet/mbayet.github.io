@@ -2,9 +2,9 @@
                                                introducing my self 
 
 My name is Mbaye Toure ,and I am going to be a sophmore next year at wisdom Highschool in HTX . This summer I made a ultrasonic security system. My ultasonic security system how does it work and what does it do ? well let me tell you. 
-
+ 
                                                       ultrasonic security system 
-My ultrasonic system it detects how close someone is to my sensor when that hapen my light will turn off showing that it is detecting something, and if you are trying to access it you will have to put in the pasword and scan my rfid card.
+My ultrasonic system it detects how close someone is to my sensor when that hapens my light will turn off showing that it is detecting something, and if you are trying to access it you will have to put in the pasword and scan my rfid card.
 I am going to Show you a picture of my system then I will tell how everything works, and how I did it .
 
                                                       picture
@@ -158,3 +158,12 @@ void loop() {
   }
 }
 ```
+     
+
+
+
+                                                                tools
+
+you can use this link to buy an arduino kit so you can make this project.
+
+https://www.amazon.com/EL-KIT-008-Project-Complete-Ultimate-TUTORIAL/dp/B01EWNUUUA/ref=asc_df_B01EWNUUUA/?tag=hyprod-20&linkCode=df0&hvadid=309779531175&hvpos=&hvnetw=g&hvrand=12878185721675954885&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9033313&hvtargid=pla-587465714317&psc=1&tag=&ref=&adgrpid=62412137260&hvpone=&hvptwo=&hvadid=309779531175&hvpos=&hvnetw=g&hvrand=12878185721675954885&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9033313&hvtargid=pla-587465714317

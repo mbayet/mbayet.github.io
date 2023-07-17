@@ -11,8 +11,14 @@ I am going to Show you a picture of my system then I will tell how everything wo
 
 ![Alt text](WIN_20230716_23_34_59_Pro.jpg)
                                                   ultra sonic sensor
+
+
 In this project I first connected my ultrasonic sensor to my elego mega 2560 R3 wich is basicly the brain of the whole project I had to connect my vcc wich is the 5 volt I also conected the trig pin the echo,and my ground . The echo pin and the trig pin are digital pins ,but what I did is that I decided to conect my digtal pins through my breadboard using long male to male wires  so I can have more space and would not have trouble,and to make my life easier the breadboard is where you develope an electric circuit and wiring !
-[Alt text](61CM6M3+R9L.jpg)
+
+
+
+![Alt text](1000_F_491098431_PJ1Ey8DgShjxEdJNDGTPFb26WbdVYHb6.jpg)
+
                                                    RFID
 
 After conecting my sensor I proceded to move on and connect my rfid for those who dont know what an rfid is it is a Radio Frequency Identification system where you can scan your card . I also connected My rfid through my breadboard just to make my life easier .
@@ -22,6 +28,8 @@ After connecting my rfid i conected my keypad  where I will be able to enter my 
 
 ![Alt text](images.jpg)
 
+                                                 
+                                                 
                                                      RGB
 
 When i finished conecting my keypad i connected my rgb light wich is an led. I also used 220 ohm resistor so I can limits and regulate the flow of electrical current in an electronic circuit. one thing you need to knoww is that the rgb light has 4 wires and one of them is very long and,it is called a cathode that is where you will connect your ground for the light to be able to turn on and the other three wires you will conect your 3 resistors.

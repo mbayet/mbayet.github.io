@@ -10,15 +10,19 @@ I am going to Show you a picture of my system then I will tell how everything wo
                                                       picture
 
 ![Alt text](WIN_20230716_23_34_59_Pro.jpg)
-                                                  ultra sonic sensor
+
+
+                                             
+                                               ultra sonic sensor
+
+
 
 
 In this project I first connected my ultrasonic sensor to my elego mega 2560 R3 wich is basicly the brain of the whole project I had to connect my vcc wich is the 5 volt I also conected the trig pin the echo,and my ground . The echo pin and the trig pin are digital pins ,but what I did is that I decided to conect my digtal pins through my breadboard using long male to male wires  so I can have more space and would not have trouble,and to make my life easier the breadboard is where you develope an electric circuit and wiring !
 
 
-
-![Alt text](1000_F_491098431_PJ1Ey8DgShjxEdJNDGTPFb26WbdVYHb6.jpg)
-
+ ![Alt text](HC-SR04-Ultrasonic-Sensor-Module-Distance-Measurement-Component-Part-Front.webp
+\
                                                    RFID
 
 After conecting my sensor I proceded to move on and connect my rfid for those who dont know what an rfid is it is a Radio Frequency Identification system where you can scan your card . I also connected My rfid through my breadboard just to make my life easier .
@@ -190,3 +194,20 @@ you can use this link to buy an arduino kit so you can make this project.
  
 
  [here](https://youtu.be/nvRi3Jw5EbE)
+
+
+
+
+                                                                 items 
+
+
+![Alt text](WIN_20230716_23_34_59_Pro.jpg)
+
+
+ ![Alt text](download-2.jpg)
+
+
+ ![Alt text](12615-01.jpg)
+
+ 
+ ![Alt text](stewmac-stewmac-220k-resistors-5-pack.jpg)

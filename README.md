@@ -17,13 +17,10 @@ In this project I started by having my Arduino Mega 2560 R3 you guys are wonderi
 After already having your arduino mega you will need a breadboard.A breadboard is where you can allow allow easy and quick creation of temporary electronic circuits or to carry out experiments with circuit.
 ![Alt text](image-2.png)
 
-# ultra sonic sensor
+# ultrasonic sensor
+What is an ultrasonic sensor? An ultrasonic sensor is a sensor that  measures the distance to an object using ultrasonic sound waves. The first step you have to do to connect your sensor is that you have to know what a vcc,trig pin,echo pin,and  ground are. A vcc is the first needle that you will connect to a 5 volt then you can connect your echo pin, and trig pin wich are digital pins so you can conect them to any digital pin that you want. After you finish the trig and the echo you can proceed to connect  your ground because if don't connect your ground your sensor will not have power. I will put a picture so you guys can see how your sensor should look after you connect it.
+![Alt text](image-3.png)
 
-
-
-
-
- 
 # RFID
 
 

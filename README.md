@@ -43,22 +43,24 @@ void setup() {
 
 # RFID
 What is an RFID? An RFID is used to  to passively identify a tagged object. The way you can connect your rfid is that ther will be letters writen on your rfid and some of them will be digital pins then you will have to connect a 3.3 volt, and your ground because you need your ground for the rfid to work.
-Here is a picture you can use so you can connect your rfid.
+Here is a picture, and a code for the RFID.
+![Alt text](image-12.png)
 
 
 # Keypad
 What is a keypad? A keypad is like a mini keyboard with numbers and a couple of letters.The wsy you can connect your keypad is that there is eight dgital pin that you will need to connect to the first four will be for the rows and the last four will be for coloms. One thing is that it does not matter where you plug your digital pins .
-Here is a picture so you guys can see how I connected mine.
-![Alt text](image-6.png)
+Here is a picture and a code .
+
+![Alt text](image-13.png)
 
 
 
                                                  
   # RGB
 What is an RGB? An RGB  emits different colors by mixing the 3 basic colors red, green and blue. The way you can connect your RGB is that you can connect it to your breadboard anywhere you want , but the is four needles and one of the needls is longer than the other one that needle is called a cathode then for the other three wires you can use resistors. For those who don't know what a resistor is I will talk about it in the next section .
-Here is a picture so you guys can see how it looks after you connect your RGB .
-![Alt text](image-7.png)
+Here is a picture and a code  .
 
+![Alt text](image-14.png)
 
 # Resistors 
 What is a resistor? A resistor reduces current flow, adjust signal levels, to divide voltages, bias active elements, and terminate transmission lines, among other uses. Another thing that you guys need to know is that there are two types namely linear resistor and non-linear resistor.

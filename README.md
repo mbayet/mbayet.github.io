@@ -21,51 +21,31 @@ After already having your arduino mega you will need a breadboard.A breadboard i
 # ultrasonic sensor
 What is an ultrasonic sensor? An ultrasonic sensor is a sensor that  measures the distance to an object using ultrasonic sound waves. The first step you have to do to connect your sensor is that you have to know what a vcc,trig pin,echo pin,and  ground are. A vcc is the first needle that you will connect to a 5 volt then you can connect your echo pin, and trig pin wich are digital pins so you can conect them to any digital pin that you want. After you finish the trig and the echo you can proceed to connect  your ground because if don't connect your ground your sensor will not have power. I will put a picture so you guys can see how your sensor should look after you connect it.
 ![Alt text](image-11.png)
-```c++
-// Include Libraries
-#include "Arduino.h"
-#include "NewPing.h"
+```C++
+#include "SR04.h"
+#define TRIG_PIN 3
+#define ECHO_PIN 2
+SR04 sr04 = SR04(ECHO_PIN, TRIG_PIN);
+long distance;
+
+void setup() {
+  Serial.begin(9600);
+  /* Enable the SPI interface */
+  SPI.begin();
+
+  void loop() {
+  distance = sr04.Distance();
+  // We start with if distance is < 100
+  if (distance < 100) {
+    digitalWrite(BLUE, LOW);
+    // Serial.println("pls scan now");
 
 
-// Pin Definitions
-#define HCSR04_PIN_TRIG	3
-#define HCSR04_PIN_ECHO	2
-
-
-
-// Global variables and defines
-
-// object initialization
-NewPing hcsr04(HCSR04_PIN_TRIG,HCSR04_PIN_ECHO);
-
-
-// define vars for testing menu
-const int timeout = 10000;       //define timeout of 10 sec
-char menuOption = 0;
-long time0;
-
-// Setup the essentials for your circuit to work. It runs first every time your circuit is powered with electricity.
-void setup() 
-{
-    // Setup Serial which is useful for debugging
-    // Use the Serial Monitor to view printed messages
-    Serial.begin(9600);
-    while (!Serial) ; // wait for serial port to connect. Needed for native USB
-    Serial.println("start");
-    
-    
-    menuOption = menu();
-    
-}
-
-// Main logic of your circuit. It defines the interaction between the components you selected. After setup, it runs over and over again, in an eternal loop.
-void loop()
-```
 
 # RFID
 What is an RFID? An RFID is used to  to passively identify a tagged object. The way you can connect your rfid is that ther will be letters writen on your rfid and some of them will be digital pins then you will have to connect a 3.3 volt, and your ground because you need your ground for the rfid to work.
 Here is a picture you can use so you can connect your rfid.
-![Alt text](image-5.png)
+
 
 # Keypad
 What is a keypad? A keypad is like a mini keyboard with numbers and a couple of letters.The wsy you can connect your keypad is that there is eight dgital pin that you will need to connect to the first four will be for the rows and the last four will be for coloms. One thing is that it does not matter where you plug your digital pins .
@@ -83,7 +63,7 @@ Here is a picture so you guys can see how it looks after you connect your RGB .
 
 # Resistors 
 What is a resistor? A resistor reduces current flow, adjust signal levels, to divide voltages, bias active elements, and terminate transmission lines, among other uses. Another thing that you guys need to know is that there are two types namely linear resistor and non-linear resistor.
-Here is a picture of how  a resistor look .
+Here is a code and a  picture.
 
 
 
@@ -92,177 +72,138 @@ Here is a picture of how  a resistor look .
 
 
   # CODE
-  ```c++
-// Include Libraries
-#include "Arduino.h"
-#include "NewPing.h"
-#include "Keypad.h"
-#include "RFID.h"
-#include "RGBLed.h"
-#include "Button.h"
+ ```c++
+#include <SPI.h>
+/* Include the RFID library */
+#include <RFID.h>
+#include "SR04.h"
+#include <Keypad.h>
+
+#define TRIG_PIN 10
+#define ECHO_PIN 11
+#define SDA_DIO 9
+#define RESET_DIO 8
+#define BLUE 4
+#define GREEN 3
+#define RED 2
 
 
-// Pin Definitions
-#define HCSR04_PIN_TRIG	6
-#define HCSR04_PIN_ECHO	5
-#define KEYPADMEM3X4_PIN_ROW1	10
-#define KEYPADMEM3X4_PIN_ROW2	11
-#define KEYPADMEM3X4_PIN_ROW3	12
-#define KEYPADMEM3X4_PIN_ROW4	13
-#define KEYPADMEM3X4_PIN_COL1	7
-#define KEYPADMEM3X4_PIN_COL2	8
-#define KEYPADMEM3X4_PIN_COL3	9
-#define RFID_PIN_RST	14
-#define RFID_PIN_SDA	53
-#define RGBLED_PIN_B	2
-#define RGBLED_PIN_G	3
-#define RGBLED_PIN_R	4
-#define SLIDESWITCH_PIN_2	15
-
-
-
-// Global variables and defines
-//Use this 2D array to map the keys as you desire
-char keypadmem3x4keys[ROWS][COLS] = {
-{'1','2','3'},
-{'4','5','6'},
-{'7','8','9'},
-{'*','0','#'}
+//KeyPad begin setup
+const byte ROWS = 4;  //four rows
+const byte COLS = 4;  //four columns
+//define the cymbols on the buttons of the keypads
+char hexaKeys[ROWS][COLS] = {
+  { '1', '2', '3', 'A' },
+  { '4', '5', '6', 'B' },
+  { '7', '8', '9', 'C' },
+  { '*', '0', '#', 'D' }
 };
-#define rgbLed_TYPE COMMON_ANODE
-// object initialization
-NewPing hcsr04(HCSR04_PIN_TRIG,HCSR04_PIN_ECHO);
-Keypad keypadmem3x4(KEYPADMEM3X4_PIN_COL1,KEYPADMEM3X4_PIN_COL2,KEYPADMEM3X4_PIN_COL3,KEYPADMEM3X4_PIN_ROW1,KEYPADMEM3X4_PIN_ROW2,KEYPADMEM3X4_PIN_ROW3,KEYPADMEM3X4_PIN_ROW4);
-RFID rfid(RFID_PIN_SDA,RFID_PIN_RST);
-RGBLed rgbLed(RGBLED_PIN_R,RGBLED_PIN_G,RGBLED_PIN_B,rgbLed_TYPE);
-Button slideSwitch(SLIDESWITCH_PIN_2);
+byte rowPins[ROWS] = { 23, 27, 31, 35 };  //connect to the row pinouts of the keypad
+byte colPins[COLS] = { 39, 43, 47, 24 };  //connect to the column pinouts of the keypad
+Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
 
+//KeyPad end setup
 
-// define vars for testing menu
-const int timeout = 10000;       //define timeout of 10 sec
-char menuOption = 0;
-long time0;
+RFID RC522(SDA_DIO, RESET_DIO);
+SR04 sr04 = SR04(ECHO_PIN, TRIG_PIN);
+long distance;
+char customKey = customKeypad.getKey();
+char enteredKey = ' ';
+/* Define the DIO used for the SDA (SS) and RST (reset) pins. */
+/*
+PINOUT:
+RC522 MODULE    Uno/Nano     MEGA
+SDA             D10          D11
+SCK             D13          D52
+MOSI            D11          D51
+MISO            D12          D50
+IRQ             N/A          N/A
+GND             GND          GND
+RST             D9           D8
+3.3V            3.3V         3.3V
+*/
 
-// Setup the essentials for your circuit to work. It runs first every time your circuit is powered with electricity.
-void setup() 
-{
-    // Setup Serial which is useful for debugging
-    // Use the Serial Monitor to view printed messages
-    Serial.begin(9600);
-    while (!Serial) ; // wait for serial port to connect. Needed for native USB
-    Serial.println("start");
-    
-    //Initialize the keypad with selected key map
-    keypadmem3x4.begin(keypadmem3x4keys);
-    //initialize RFID module
-    rfid.init();
-    rgbLed.turnOff();              // Start with  LED Strip RGB turned off
-    slideSwitch.init();
-    menuOption = menu();
-    
+/* Create an instance of the RFID library */
+
+void setup() {
+  Serial.begin(9600);
+  /* Enable the SPI interface */
+  SPI.begin();
+  /* Initialise the RFID reader */
+  RC522.init();
+
+  pinMode(RED, OUTPUT);
+  pinMode(GREEN, OUTPUT);
+  pinMode(BLUE, OUTPUT);
+  digitalWrite(RED, LOW);
+  digitalWrite(GREEN, LOW);
+  digitalWrite(BLUE, LOW);
 }
 
-// Main logic of your circuit. It defines the interaction between the components you selected. After setup, it runs over and over again, in an eternal loop.
-void loop() 
-{
-    
-    
-    if(menuOption == '1') {
-    // Ultrasonic Sensor - HC-SR04 - Test Code
-    // Read distance measurment from UltraSonic sensor           
-    int hcsr04Dist = hcsr04.ping_cm();
-    delay(10);
-    Serial.print(F("Distance: ")); Serial.print(hcsr04Dist); Serial.println(F("[cm]"));
-
-    }
-    else if(menuOption == '2') {
-    // Membrane 3x4 Matrix Keypad - Test Code
-    //Read keypad
-    char keypadmem3x4Key = keypadmem3x4.getKey();
-    if (isDigit(keypadmem3x4Key) ||  keypadmem3x4Key == '*' ||  keypadmem3x4Key == '#')
-    {
-    Serial.print(keypadmem3x4Key);
-    }
-    }
-    else if(menuOption == '3') {
-    // RFID Card Reader - RC522 - Test Code
-    //Read RFID tag if present
-    String rfidtag = rfid.readTag();
-    //print the tag to serial monitor if one was discovered
-    rfid.printTag(rfidtag);
-
-    }
-    else if(menuOption == '4') {
-    // RGB Led Common Anode - Test Code
-    // The RGB LED will turn PURPLE for 500ms(half a second) and turn off
-    rgbLed.setRGB(160, 3, 255);    // 1. sets RGB LED color to purple. Change the values in the brackets to (255,0,0) for pure RED, (0,255,0) for pure GREEN and (0,0,255) for pure BLUE.
-    delay(500);                         // 2. change the value in the brackets (500) for a longer or shorter delay in milliseconds.
-    rgbLed.setRGB(0, 0, 0);        // 3. turns RGB LED off (showing no color). Change the values in the brackets to alter the color.
-    delay(500);                         // 4. change the value in the brackets (500) for a longer or shorter delay in milliseconds.  
-    }
-    else if(menuOption == '5') {
-    // SPDT Slide Switch (Breadboard-friendly) - Test Code
-    //read Slide Switch state. 
-    //if Switch is open function will return LOW (0). 
-    //if it is closed function will return HIGH (1).
-    bool slideSwitchVal = slideSwitch.read();
-    Serial.print(F("Val: ")); Serial.println(slideSwitchVal);
-    }
-    
-    if (millis() - time0 > timeout)
-    {
-        menuOption = menu();
-    }
-    
-}
-
-
-
-// Menu function for selecting the components to be tested
-// Follow serial monitor for instrcutions
-char menu()
-{
-
-    Serial.println(F("\nWhich component would you like to test?"));
-    Serial.println(F("(1) Ultrasonic Sensor - HC-SR04"));
-    Serial.println(F("(2) Membrane 3x4 Matrix Keypad"));
-    Serial.println(F("(3) RFID Card Reader - RC522"));
-    Serial.println(F("(4) RGB Led Common Anode"));
-    Serial.println(F("(5) SPDT Slide Switch (Breadboard-friendly)"));
-    Serial.println(F("(menu) send anything else or press on board reset button\n"));
-    while (!Serial.available());
-
-    // Read data from serial monitor if received
-    while (Serial.available()) 
-    {
-        char c = Serial.read();
-        if (isAlphaNumeric(c)) 
-        {   
-            
-            if(c == '1') 
-    			Serial.println(F("Now Testing Ultrasonic Sensor - HC-SR04"));
-    		else if(c == '2') 
-    			Serial.println(F("Now Testing Membrane 3x4 Matrix Keypad"));
-    		else if(c == '3') 
-    			Serial.println(F("Now Testing RFID Card Reader - RC522"));
-    		else if(c == '4') 
-    			Serial.println(F("Now Testing RGB Led Common Anode"));
-    		else if(c == '5') 
-    			Serial.println(F("Now Testing SPDT Slide Switch (Breadboard-friendly)"));
-            else
-            {
-                Serial.println(F("illegal input!"));
-                return 0;
-            }
-            time0 = millis();
-            return c;
+void loop() {
+  distance = sr04.Distance();
+  // We start with if distance is < 100
+  if (distance < 100) {
+    digitalWrite(BLUE, LOW);
+    // Serial.println("pls scan now");
+    if (RC522.isCard()) {
+      /* If so then get its serial number */
+      String cardNumberScanned = "";
+      RC522.readCardSerial();
+      Serial.println("Card detected:");
+      for (int i = 0; i < 5; i++) {
+        // Serial.print(RC522.serNum[i], DEC);
+        cardNumberScanned.concat(RC522.serNum[i]);
+      }
+      Serial.println();
+      Serial.print("card Number: ");
+      Serial.println(cardNumberScanned);
+      if (cardNumberScanned.compareTo("13646392239") == 0) {
+        if (enteredKey == '1') {
+          digitalWrite(RED, LOW);
+          digitalWrite(GREEN, LOW);
+          digitalWrite(BLUE, LOW);
+          delay(300);
+          digitalWrite(RED, LOW);
+          digitalWrite(GREEN, HIGH);
+        } else {
+          Serial.print("incorrect code: ");
+          Serial.println(enteredKey);
+          digitalWrite(RED, LOW);
+          digitalWrite(GREEN, LOW);
+          digitalWrite(BLUE, LOW);
+          delay(300);
+          digitalWrite(RED, HIGH);
+          digitalWrite(GREEN, LOW);
         }
+
+      } else {
+        digitalWrite(RED, LOW);
+        digitalWrite(GREEN, LOW);
+        digitalWrite(BLUE, LOW);
+        delay(300);
+        digitalWrite(RED, HIGH);
+        digitalWrite(GREEN, LOW);
+        Serial.println("no card incorrect");
+      }
+      Serial.println();
+      Serial.println();
     }
+  } else {
+    digitalWrite(BLUE, HIGH);
+  }
+  /* Has distance card been detected? */
+  customKey = customKeypad.getKey();
+  if (customKey && enteredKey != customKey) {
+    Serial.println(customKey);
+    enteredKey = customKey;
+  }
+  if (customKey == 'D') {
+    Serial.print(distance);
+    Serial.println("cm");
+  }
 }
-```
-
-
-
+``````
 # tools
 
 you can use this link to buy an arduino kit so you can make this project.

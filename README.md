@@ -16,6 +16,7 @@ In this project I started by having my Arduino Mega 2560 R3 you guys are wonderi
 
 # Breadboard
 After already having your arduino mega you will need a breadboard. A breadboard is where you can allow allow easy and quick creation of temporary electronic circuits or to carry out experiments with circuit.
+
 ![Alt text](image-2.png)
 
 # ultrasonic sensor
@@ -84,39 +85,9 @@ void loop() {
     Serial.print("card Number: ");
     Serial.println(cardNumberScanned);
     if (cardNumberScanned.compareTo("13646395236") == 0) {
-      if (enteredKey == '1') {
-        digitalWrite(RED, LOW);
-        digitalWrite(GREEN, LOW);
-        digitalWrite(BLUE, LOW);
-        delay(300);
-        digitalWrite(RED, LOW);
-        digitalWrite(GREEN, HIGH);
-      } else {
-        Serial.print("incorrect code: ");
-        Serial.println(enteredKey);
-        digitalWrite(RED, LOW);
-        digitalWrite(GREEN, LOW);
-        digitalWrite(BLUE, LOW);
-        delay(300);
-        digitalWrite(RED, HIGH);
-        digitalWrite(GREEN, LOW);
-      }
-
-    } else {
-      digitalWrite(RED, LOW);
-      digitalWrite(GREEN, LOW);
-      digitalWrite(BLUE, LOW);
-      delay(300);
-      digitalWrite(RED, HIGH);
-      digitalWrite(GREEN, LOW);
-      Serial.println("no card incorrect");
-    }
-    Serial.println();
-    Serial.println();
+      
   }
 }
-else {
-  digitalWrite(BLUE, HIGH);
 }
 ```
 
@@ -124,7 +95,7 @@ else {
                                                  
 
 # RGB
-What is an RGB? An RGB  emits different colors by mixing the 3 basic colors red, green and blue. The way you can connect your RGB is that you can connect it to your breadboard anywhere you want , but the is four needles and one of the needls is longer than the other one that needle is called a cathode then for the other three wires you can use resistors. For those who don't know what a resistor is I will talk about it in the next section.
+What is an RGB? An RGB  limits different colors by mixing the 3 basic colors red, green and blue. The way you can connect your RGB is that you can connect it to your breadboard anywhere you want , but the is four needles and one of the needls is longer than the other one that needle is called a cathode then for the other three wires you can use resistors. For those who don't know what a resistor is I will talk about it in the next section.
 Here is a picture and a code.
 
 ![Alt text](image-15.png)
@@ -153,21 +124,13 @@ void loop() {
   digitalWrite(GREEN, LOW);
   // This part is showing that we set our lights to low voltage 
   delay(300); // 300 micro second delay
-  digitalWrite(RED, LOW);
   digitalWrite(GREEN, HIGH); // green light on high voltage 
-  digitalWrite(RED, LOW);
-  digitalWrite(GREEN, LOW);
   digitalWrite(BLUE, LOW);
   delay(300);
   digitalWrite(RED, HIGH);
-  digitalWrite(GREEN, LOW);
-  digitalWrite(RED, LOW);
   // in the loop section we are seting our lights color voltage
-  digitalWrite(GREEN, LOW);
   digitalWrite(BLUE, LOW);
   delay(300);
-  digitalWrite(RED, HIGh);
-  digitalWrite(GREEN, LOW);
   digitalWrite(BLUE, HIGH);
 }
 ```

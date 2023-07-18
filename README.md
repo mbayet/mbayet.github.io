@@ -201,10 +201,10 @@ Here is where you guys  can use my code and make the same exact connection I mad
 #include "SR04.h"
 #include <Keypad.h>
 
-#define TRIG_PIN 10
-#define ECHO_PIN 11
-#define SDA_DIO 9
-#define RESET_DIO 8
+#define TRIG_PIN 6
+#define ECHO_PIN 5
+#define SDA_DIO 53
+#define RESET_DIO 14
 #define BLUE 4
 #define GREEN 3
 #define RED 2
@@ -220,8 +220,8 @@ char hexaKeys[ROWS][COLS] = {
   { '7', '8', '9', 'C' },
   { '*', '0', '#', 'D' }
 };
-byte rowPins[ROWS] = { 23, 27, 31, 35 };  //connect to the row pinouts of the keypad
-byte colPins[COLS] = { 39, 43, 47, 24 };  //connect to the column pinouts of the keypad
+byte rowPins[ROWS] = { 10, 11, 12, 13 };  //connect to the row pinouts of the keypad
+byte colPins[COLS] = { 6, 7, 8, 9 };  //connect to the column pinouts of the keypad
 Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
 
 //KeyPad end setup

@@ -165,7 +165,7 @@ void loop() {
                                                  
 
 # RGB
-What is an RGB? An RGB  emits different colors by mixing the 3 basic colors red, green and blue. The way you can connect your RGB is that you can connect it to your breadboard anywhere you want , but the is four needles and one of the needls is longer than the other one that needle is called a cathode then for the other three wires you can use resistors. For those who don't know what a resistor is I will talk about it in the next section .
+What is an RGB? An RGB  emits different colors by mixing the 3 basic colors red, green and blue. The way you can connect your RGB is that you can connect it to your breadboard anywhere you want , but the is four needles and one of the needls is longer than the other one that needle is called a cathode then for the other three wires you can use resistors. For those who don't know what a resistor is I will talk about it in the next section.
 Here is a picture and a code.
 
 ![Alt text](image-15.png)
@@ -209,7 +209,7 @@ digitalWrite(RED, HIGh);
 digitalWrite(GREEN, LOW);
 digitalWrite(BLUE, HIGH);
 }
-```  
+``` 
 
 # Resistors 
 What is a resistor? A resistor reduces current flow, adjust signal levels, to divide voltages, bias active elements, and terminate transmission lines, among other uses. Another thing that you guys need to know is that there are two types namely linear resistor and non-linear resistor.

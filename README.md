@@ -15,7 +15,7 @@ In this project I started by having my Arduino Mega 2560 R3 you guys are wonderi
 
 
 # Breadboard
-After already having your arduino mega you will need a breadboard.A breadboard is where you can allow allow easy and quick creation of temporary electronic circuits or to carry out experiments with circuit.
+After already having your arduino mega you will need a breadboard. A breadboard is where you can allow allow easy and quick creation of temporary electronic circuits or to carry out experiments with circuit.
 ![Alt text](image-2.png)
 
 # ultrasonic sensor

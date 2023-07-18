@@ -26,8 +26,13 @@ What is an RFID? An RFID is used to  to passively identify a tagged object. The 
 Here is a picture you can use so you can connect your rfid.
 ![Alt text](image-5.png)
 
+# Keypad
+What is a keypad? A keypad is like a mini keyboard with numbers and a couple of letters.The wsy you can connect your keypad is that there is eight dgital pin that you will need to connect to the first four will be for the rows and the last four will be for coloms. One thing is that it does not matter where you plug your digital pins .
+Here is a picture so you guys can see how I connected mine.
+![Alt text](image-6.png)
 
-                                                 
+
+
                                                  
   # RGB
 

@@ -44,6 +44,9 @@ Here is a picture so you guys can see how it looks after you connect your RGB .
 # Resistors 
 What is a resistor? A resistor reduces current flow, adjust signal levels, to divide voltages, bias active elements, and terminate transmission lines, among other uses. Another thing that you guys need to know is that there are two types namely linear resistor and non-linear resistor.
 Here is a picture of how  a resistor look .
+
+
+
 ![Alt text](image-9.png)
 
 

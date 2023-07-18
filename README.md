@@ -151,7 +151,6 @@ void loop() {
   digitalWrite(BLUE, LOW);
   digitalWrite(RED, LOW);
   digitalWrite(GREEN, LOW);
-  digitalWrite(BLUE, LOW);
   // This part is showing that we set our lights to low voltage 
   delay(300); // 300 micro second delay
   digitalWrite(RED, LOW);

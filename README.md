@@ -20,7 +20,47 @@ After already having your arduino mega you will need a breadboard.A breadboard i
 
 # ultrasonic sensor
 What is an ultrasonic sensor? An ultrasonic sensor is a sensor that  measures the distance to an object using ultrasonic sound waves. The first step you have to do to connect your sensor is that you have to know what a vcc,trig pin,echo pin,and  ground are. A vcc is the first needle that you will connect to a 5 volt then you can connect your echo pin, and trig pin wich are digital pins so you can conect them to any digital pin that you want. After you finish the trig and the echo you can proceed to connect  your ground because if don't connect your ground your sensor will not have power. I will put a picture so you guys can see how your sensor should look after you connect it.
-![Alt text](image-4.png)
+![Alt text](image-11.png)
+```c++
+// Include Libraries
+#include "Arduino.h"
+#include "NewPing.h"
+
+
+// Pin Definitions
+#define HCSR04_PIN_TRIG	3
+#define HCSR04_PIN_ECHO	2
+
+
+
+// Global variables and defines
+
+// object initialization
+NewPing hcsr04(HCSR04_PIN_TRIG,HCSR04_PIN_ECHO);
+
+
+// define vars for testing menu
+const int timeout = 10000;       //define timeout of 10 sec
+char menuOption = 0;
+long time0;
+
+// Setup the essentials for your circuit to work. It runs first every time your circuit is powered with electricity.
+void setup() 
+{
+    // Setup Serial which is useful for debugging
+    // Use the Serial Monitor to view printed messages
+    Serial.begin(9600);
+    while (!Serial) ; // wait for serial port to connect. Needed for native USB
+    Serial.println("start");
+    
+    
+    menuOption = menu();
+    
+}
+
+// Main logic of your circuit. It defines the interaction between the components you selected. After setup, it runs over and over again, in an eternal loop.
+void loop()
+```
 
 # RFID
 What is an RFID? An RFID is used to  to passively identify a tagged object. The way you can connect your rfid is that ther will be letters writen on your rfid and some of them will be digital pins then you will have to connect a 3.3 volt, and your ground because you need your ground for the rfid to work.

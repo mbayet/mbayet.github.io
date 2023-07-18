@@ -1,26 +1,25 @@
 # mbayet.github.io
 # Introduction
 
-My name is Mbaye Toure and I am going to be a sophmore next year at Wisdom High school in Houston. This summer I made a ultrasonic security system. My ultasonic security system ,how does it work and what does it do? well let me tell you. 
+My name is Mbaye Toure and I am going to be a sophomore next year at Wisdom High school in Houston. This summer I made an ultrasonic security system. My ultrasonic security system ,how does it work and what does it do? well let me tell you.
 
  
 # ultrasonic security system 
-My ultrasonic system it detects how close someone is to my sensor when that hapens my light will turn off showing that it is detecting something, and if you are trying to access it you will have to put in the pasword and scan my rfid card.
+My ultrasonic system detects how close someone is to my sensor when that happens my light will turn off showing that it is detecting something, and if you are trying to access it you will have to put in the pasword and scan my rfid card.
 
 
 # Arduino Mega 2560 R3
-In this project I started by having my Arduino Mega 2560 R3 you guys are wondering how does it work well let me explain.The Arduino Mega 2560  R3 is what I like to call the brain,because it is basicly like a motherboard where everything is controlled,and where you connect your power .  
-
+In this project I started by having my Arduino Mega 2560 R3 you guys are wondering how does it work well let me explain.The Arduino Mega 2560  R3 is what I like to call the brain,because it is basically like a motherboard where everything is controlled,and where you connect your power .  
 ![Alt text](image.png)
 
 
 # Breadboard
-After already having your arduino mega you will need a breadboard. A breadboard is where you can allow allow easy and quick creation of temporary electronic circuits or to carry out experiments with circuit.
+After already having your Arduino Mega you will need a breadboard. A breadboard is where you can allow easy and quick creation of temporary electronic circuits or carry out experiments with courses.
 
 ![Alt text](image-2.png)
 
 # ultrasonic sensor
-What is an ultrasonic sensor? An ultrasonic sensor is a sensor that  measures the distance to an object using ultrasonic sound waves. The first step you have to do to connect your sensor is that you have to know what a vcc,trig pin,echo pin,and  ground are. A vcc is the first needle that you will connect to a 5 volt then you can connect your echo pin, and trig pin wich are digital pins so you can conect them to any digital pin that you want. After you finish the trig and the echo you can proceed to connect  your ground because if don't connect your ground your sensor will not have power. I will put a picture and a code  so you guys can see how your sensor should look after you connect it.
+What is an ultrasonic sensor? An ultrasonic sensor is a sensor that measures the distance to an object using ultrasonic sound waves. The first step you have to do to connect your sensor is that you have to know what a VCC, trig pin, echo pin, and ground are. A VCC is the first needle that you will connect to a 5 volt then you can click your echo pin, and trig pin which are digital pins so you can connect them to any digital pin that you want. After you finish the trig and the echo you can proceed to connect your ground because if don't connect your ground to your sensor will not have power. I will put a picture and a code so you guys can see how your sensor should look after you connect it.
 
 
 ![Alt text](image-11.png)
@@ -48,8 +47,9 @@ void loop() {
 ```
 # RFID   
 
-What is an RFID? An RFID is used to  to passively identify a tagged object. The way you can connect your rfid is that ther will be letters writen on your rfid and some of them will be digital pins then you will have to connect a 3.3 volt, and your ground because you need your ground for the rfid to work.
+What is an RFID? An RFID is used to passively identify a tagged object. The way you can connect your RFID is that there will be letters written on your RFID and some of them will be digital pins then you will have to connect a 3.3 volt, and your ground because you need your ground for the RFID to work.
 Here is a picture, and a code for the RFID.
+
 
 
 
@@ -95,8 +95,9 @@ void loop() {
                                                  
 
 # RGB
-What is an RGB? An RGB  limits different colors by mixing the 3 basic colors red, green and blue. The way you can connect your RGB is that you can connect it to your breadboard anywhere you want , but the is four needles and one of the needls is longer than the other one that needle is called a cathode then for the other three wires you can use resistors. For those who don't know what a resistor is I will talk about it in the next section.
+What is an RGB? An RGB  limits different colors by mixing the 3 basic colors red, green, and blue. The way you can connect your RGB is that you can connect it to your breadboard anywhere you want, but there are four needles and one of the needles is longer than the other one that needle is called a cathode then for the other three wires you can use resistors. For those who don't know what a resistor is, I will talk about it in the next section.
 Here is a picture and a code.
+
 
 ![Alt text](image-15.png)
 
@@ -136,8 +137,8 @@ void loop() {
 ```
 
 # Resistors 
-What is a resistor? A resistor reduces current flow, adjust signal levels, to divide voltages, bias active elements, and terminate transmission lines, among other uses. Another thing that you guys need to know is that there are two types namely linear resistor and non-linear resistor.
-Here is a code and a  picture. 
+What is a resistor? A resistor reduces current flow, adjust signal levels, divides voltages, bias active elements, and terminate transmission lines, among other uses. Another thing that you guys need to know is that there are two types namely linear resistors and non-linear resistors.
+Here is a code and a  picture.
 
 
 

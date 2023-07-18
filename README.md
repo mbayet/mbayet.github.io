@@ -34,15 +34,15 @@ void setup() {
   Serial.begin(9600);
   /* Enable the SPI interface */
   SPI.begin();
-
+}
   void loop() {
   distance = sr04.Distance();
   // We start with if distance is < 100
   if (distance < 100) {
     digitalWrite(BLUE, LOW);
     // Serial.println("pls scan now");
-```
-
+  }
+  }
 # RFID
 
 What is an RFID? An RFID is used to  to passively identify a tagged object. The way you can connect your rfid is that ther will be letters writen on your rfid and some of them will be digital pins then you will have to connect a 3.3 volt, and your ground because you need your ground for the rfid to work.
@@ -116,7 +116,7 @@ void loop() {
  
 
 # Keypad
-What is a keypad? A keypad is like a mini keyboard with numbers and a couple of letters.The wsy you can connect your keypad is that there is eight dgital pin that you will need to connect to the first four will be for the rows and the last four will be for coloms. One thing is that it does not matter where you plug your digital pins .
+What is a keypad? A keypad is like a mini keyboard with numbers and a couple of letters.The why you can connect your keypad is that there is eight dgital pin that you will need to connect to the first four will be for the rows and the last four will be for coloms. One thing is that it does not matter where you plug your digital pins .
 Here is a picture and a code .
 
 ![Alt text](image-13.png)
@@ -171,9 +171,9 @@ Here is a picture and a code.
 ![Alt text](image-15.png)
 
 ```C++
- #define BLUE 4
+ #define BLUE 2
 #define GREEN 3
-#define RED 2
+#define RED 4
 
 void setup() {
   Serial.begin(9600);
@@ -253,6 +253,8 @@ Here is a code and a  picture.
 
 
   # CODE
+Here is where you huys can use my code and make the same exact connection I made for this project . 
+
  ```c++
 #include <SPI.h>
 /* Include the RFID library */

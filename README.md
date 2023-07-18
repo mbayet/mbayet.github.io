@@ -23,7 +23,7 @@ What is an ultrasonic sensor? An ultrasonic sensor is a sensor that  measures th
 ![Alt text](image-4.png)
 
 # RFID
-What is an RFID? An RFID is used to  to passively identify a tagged object. The way you can connect your rfid is that ther will be letters writen on your rfid and some of them will be digital pins then you will have to connect a 3.3 volt, and your groung because you need your ground for the rfid to work.
+What is an RFID? An RFID is used to  to passively identify a tagged object. The way you can connect your rfid is that ther will be letters writen on your rfid and some of them will be digital pins then you will have to connect a 3.3 volt, and your ground because you need your ground for the rfid to work.
 Here is a picture you can use so you can connect your rfid.
 ![Alt text](image-5.png)
 
@@ -40,7 +40,16 @@ What is an RGB? An RGB  emits different colors by mixing the 3 basic colors red,
 Here is a picture so you guys can see how it looks after you connect your RGB .
 ![Alt text](image-7.png)
 
+
+# Resistors 
+What is a resistor? A resistor reduces current flow, adjust signal levels, to divide voltages, bias active elements, and terminate transmission lines, among other uses. Another thing that you guys need to know is that there are two types namely linear resistor and non-linear resistor.
+Here is a picture of how  a resistor look .
+![Alt text](image-8.png)
+
+
+
   # CODE
+
 
 
 

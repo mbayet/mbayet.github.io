@@ -52,8 +52,174 @@ Here is a picture of how  a resistor look .
 
 
   # CODE
+  ```c++
+// Include Libraries
+#include "Arduino.h"
+#include "NewPing.h"
+#include "Keypad.h"
+#include "RFID.h"
+#include "RGBLed.h"
+#include "Button.h"
 
 
+// Pin Definitions
+#define HCSR04_PIN_TRIG	6
+#define HCSR04_PIN_ECHO	5
+#define KEYPADMEM3X4_PIN_ROW1	10
+#define KEYPADMEM3X4_PIN_ROW2	11
+#define KEYPADMEM3X4_PIN_ROW3	12
+#define KEYPADMEM3X4_PIN_ROW4	13
+#define KEYPADMEM3X4_PIN_COL1	7
+#define KEYPADMEM3X4_PIN_COL2	8
+#define KEYPADMEM3X4_PIN_COL3	9
+#define RFID_PIN_RST	14
+#define RFID_PIN_SDA	53
+#define RGBLED_PIN_B	2
+#define RGBLED_PIN_G	3
+#define RGBLED_PIN_R	4
+#define SLIDESWITCH_PIN_2	15
+
+
+
+// Global variables and defines
+//Use this 2D array to map the keys as you desire
+char keypadmem3x4keys[ROWS][COLS] = {
+{'1','2','3'},
+{'4','5','6'},
+{'7','8','9'},
+{'*','0','#'}
+};
+#define rgbLed_TYPE COMMON_ANODE
+// object initialization
+NewPing hcsr04(HCSR04_PIN_TRIG,HCSR04_PIN_ECHO);
+Keypad keypadmem3x4(KEYPADMEM3X4_PIN_COL1,KEYPADMEM3X4_PIN_COL2,KEYPADMEM3X4_PIN_COL3,KEYPADMEM3X4_PIN_ROW1,KEYPADMEM3X4_PIN_ROW2,KEYPADMEM3X4_PIN_ROW3,KEYPADMEM3X4_PIN_ROW4);
+RFID rfid(RFID_PIN_SDA,RFID_PIN_RST);
+RGBLed rgbLed(RGBLED_PIN_R,RGBLED_PIN_G,RGBLED_PIN_B,rgbLed_TYPE);
+Button slideSwitch(SLIDESWITCH_PIN_2);
+
+
+// define vars for testing menu
+const int timeout = 10000;       //define timeout of 10 sec
+char menuOption = 0;
+long time0;
+
+// Setup the essentials for your circuit to work. It runs first every time your circuit is powered with electricity.
+void setup() 
+{
+    // Setup Serial which is useful for debugging
+    // Use the Serial Monitor to view printed messages
+    Serial.begin(9600);
+    while (!Serial) ; // wait for serial port to connect. Needed for native USB
+    Serial.println("start");
+    
+    //Initialize the keypad with selected key map
+    keypadmem3x4.begin(keypadmem3x4keys);
+    //initialize RFID module
+    rfid.init();
+    rgbLed.turnOff();              // Start with  LED Strip RGB turned off
+    slideSwitch.init();
+    menuOption = menu();
+    
+}
+
+// Main logic of your circuit. It defines the interaction between the components you selected. After setup, it runs over and over again, in an eternal loop.
+void loop() 
+{
+    
+    
+    if(menuOption == '1') {
+    // Ultrasonic Sensor - HC-SR04 - Test Code
+    // Read distance measurment from UltraSonic sensor           
+    int hcsr04Dist = hcsr04.ping_cm();
+    delay(10);
+    Serial.print(F("Distance: ")); Serial.print(hcsr04Dist); Serial.println(F("[cm]"));
+
+    }
+    else if(menuOption == '2') {
+    // Membrane 3x4 Matrix Keypad - Test Code
+    //Read keypad
+    char keypadmem3x4Key = keypadmem3x4.getKey();
+    if (isDigit(keypadmem3x4Key) ||  keypadmem3x4Key == '*' ||  keypadmem3x4Key == '#')
+    {
+    Serial.print(keypadmem3x4Key);
+    }
+    }
+    else if(menuOption == '3') {
+    // RFID Card Reader - RC522 - Test Code
+    //Read RFID tag if present
+    String rfidtag = rfid.readTag();
+    //print the tag to serial monitor if one was discovered
+    rfid.printTag(rfidtag);
+
+    }
+    else if(menuOption == '4') {
+    // RGB Led Common Anode - Test Code
+    // The RGB LED will turn PURPLE for 500ms(half a second) and turn off
+    rgbLed.setRGB(160, 3, 255);    // 1. sets RGB LED color to purple. Change the values in the brackets to (255,0,0) for pure RED, (0,255,0) for pure GREEN and (0,0,255) for pure BLUE.
+    delay(500);                         // 2. change the value in the brackets (500) for a longer or shorter delay in milliseconds.
+    rgbLed.setRGB(0, 0, 0);        // 3. turns RGB LED off (showing no color). Change the values in the brackets to alter the color.
+    delay(500);                         // 4. change the value in the brackets (500) for a longer or shorter delay in milliseconds.  
+    }
+    else if(menuOption == '5') {
+    // SPDT Slide Switch (Breadboard-friendly) - Test Code
+    //read Slide Switch state. 
+    //if Switch is open function will return LOW (0). 
+    //if it is closed function will return HIGH (1).
+    bool slideSwitchVal = slideSwitch.read();
+    Serial.print(F("Val: ")); Serial.println(slideSwitchVal);
+    }
+    
+    if (millis() - time0 > timeout)
+    {
+        menuOption = menu();
+    }
+    
+}
+
+
+
+// Menu function for selecting the components to be tested
+// Follow serial monitor for instrcutions
+char menu()
+{
+
+    Serial.println(F("\nWhich component would you like to test?"));
+    Serial.println(F("(1) Ultrasonic Sensor - HC-SR04"));
+    Serial.println(F("(2) Membrane 3x4 Matrix Keypad"));
+    Serial.println(F("(3) RFID Card Reader - RC522"));
+    Serial.println(F("(4) RGB Led Common Anode"));
+    Serial.println(F("(5) SPDT Slide Switch (Breadboard-friendly)"));
+    Serial.println(F("(menu) send anything else or press on board reset button\n"));
+    while (!Serial.available());
+
+    // Read data from serial monitor if received
+    while (Serial.available()) 
+    {
+        char c = Serial.read();
+        if (isAlphaNumeric(c)) 
+        {   
+            
+            if(c == '1') 
+    			Serial.println(F("Now Testing Ultrasonic Sensor - HC-SR04"));
+    		else if(c == '2') 
+    			Serial.println(F("Now Testing Membrane 3x4 Matrix Keypad"));
+    		else if(c == '3') 
+    			Serial.println(F("Now Testing RFID Card Reader - RC522"));
+    		else if(c == '4') 
+    			Serial.println(F("Now Testing RGB Led Common Anode"));
+    		else if(c == '5') 
+    			Serial.println(F("Now Testing SPDT Slide Switch (Breadboard-friendly)"));
+            else
+            {
+                Serial.println(F("illegal input!"));
+                return 0;
+            }
+            time0 = millis();
+            return c;
+        }
+    }
+}
+```
 
 
 
@@ -66,15 +232,11 @@ you can use this link to buy an arduino kit so you can make this project.
 
 
 
-  # video
+  
+
+
+
+
  
-
- [here](https://youtu.be/nvRi3Jw5EbE)
-
-
-
-
-  # items 
-
 
  

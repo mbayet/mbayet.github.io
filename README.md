@@ -205,11 +205,11 @@ digitalWrite(RED, LOW);
 digitalWrite(GREEN, LOW);
 digitalWrite(BLUE, LOW);
 delay(300);
-digitalWrite(RED, HIGH);
+digitalWrite(RED, HIGh);
 digitalWrite(GREEN, LOW);
 digitalWrite(BLUE, HIGH);
 }
-``` 
+```  
 
 # Resistors 
 What is a resistor? A resistor reduces current flow, adjust signal levels, to divide voltages, bias active elements, and terminate transmission lines, among other uses. Another thing that you guys need to know is that there are two types namely linear resistor and non-linear resistor.

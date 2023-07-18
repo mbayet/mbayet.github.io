@@ -3,7 +3,7 @@
 
 My name is Mbaye Toure ,and I am going to be a sophmore next year at wisdom Highschool in HTX . This summer I made a ultrasonic security system. My ultasonic security system how does it work and what does it do ? well let me tell you. 
  
-## ultrasonic security system 
+# ultrasonic security system 
 My ultrasonic system it detects how close someone is to my sensor when that hapens my light will turn off showing that it is detecting something, and if you are trying to access it you will have to put in the pasword and scan my rfid card.
 I am going to Show you a picture of my system then I will tell how everything works, and how I did it .
 
@@ -13,7 +13,7 @@ I am going to Show you a picture of my system then I will tell how everything wo
 
 
                                              
-### ultra sonic sensor
+# ultra sonic sensor
 
 
 
@@ -23,7 +23,7 @@ In this project I first connected my ultrasonic sensor to my elego mega 2560 R3 
 
  ![Alt text](HC-SR04-Ultrasonic-Sensor-Module-Distance-Measurement-Component-Part-Front.webp
 \
-#### RFID
+# RFID
 
 After conecting my sensor I proceded to move on and connect my rfid for those who dont know what an rfid is it is a Radio Frequency Identification system where you can scan your card . I also connected My rfid through my breadboard just to make my life easier .
                                                     Keypad
@@ -34,7 +34,7 @@ After connecting my rfid i conected my keypad  where I will be able to enter my 
 
                                                  
                                                  
-  ##### RGB
+  # RGB
 
 When i finished conecting my keypad i connected my rgb light wich is an led. I also used 220 ohm resistor so I can limits and regulate the flow of electrical current in an electronic circuit. one thing you need to knoww is that the rgb light has 4 wires and one of them is very long and,it is called a cathode that is where you will connect your ground for the light to be able to turn on and the other three wires you will conect your 3 resistors.
 
@@ -42,7 +42,7 @@ When i finished conecting my keypad i connected my rgb light wich is an led. I a
 ![Alt text](rgb-led.png)
 
 
-  ##### CODE
+  # CODE
 
 After you finish connecting evrything you need you will need to code your project using arduino I will be puting my code on here for those of you who want to make the same exact project I made .
 ```C++
@@ -181,7 +181,7 @@ void loop() {
 
 
 
-###### tools
+# tools
 
 you can use this link to buy an arduino kit so you can make this project.
 
@@ -190,7 +190,7 @@ you can use this link to buy an arduino kit so you can make this project.
 
 
 
-  ###### video
+  # video
  
 
  [here](https://youtu.be/nvRi3Jw5EbE)
@@ -198,7 +198,7 @@ you can use this link to buy an arduino kit so you can make this project.
 
 
 
-  ###### items 
+  # items 
 
 
 ![Alt text](WIN_20230716_23_34_59_Pro.jpg)

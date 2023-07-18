@@ -171,7 +171,7 @@ Here is a picture and a code.
 ![Alt text](image-15.png)
 
 ```C++
- #define BLUE 2
+  #define BLUE 2
 #define GREEN 3
 #define RED 4
 
@@ -187,60 +187,29 @@ void setup() {
 }
 
 void loop() {
-  distance = sr04.Distance();
-  // We start with if distance is < 100
-  if (distance < 100) {
-    digitalWrite(BLUE, LOW);
-    // Serial.println("pls scan now");
-    if (RC522.isCard()) {
-      /* If so then get its serial number */
-      String cardNumberScanned = "";
-      RC522.readCardSerial();
-      Serial.println("Card detected:");
-      for (int i = 0; i < 5; i++) {
-        // Serial.print(RC522.serNum[i], DEC);
-        cardNumberScanned.concat(RC522.serNum[i]);
-      }
-      Serial.println();
-      Serial.print("card Number: ");
-      Serial.println(cardNumberScanned);
-      if (cardNumberScanned.compareTo("13646395236") == 0) {
-        if (enteredKey == '1') {
-          digitalWrite(RED, LOW);
-          digitalWrite(GREEN, LOW);
-          digitalWrite(BLUE, LOW);
-          delay(300);
-          digitalWrite(RED, LOW);
-          digitalWrite(GREEN, HIGH);
-        } else {
-          Serial.print("incorrect code: ");
-          Serial.println(enteredKey);
-          digitalWrite(RED, LOW);
-          digitalWrite(GREEN, LOW);
-          digitalWrite(BLUE, LOW);
-          delay(300);
-          digitalWrite(RED, HIGH);
-          digitalWrite(GREEN, LOW);
-        }
+digitalWrite(BLUE, LOW);
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, LOW);
+delay(300);
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, HIGH);
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, LOW);
+delay(300);
+digitalWrite(RED, HIGH);
+digitalWrite(GREEN, LOW);
+digitalWrite(RED, LOW);
 
-      } else {
-        digitalWrite(RED, LOW);
-        digitalWrite(GREEN, LOW);
-        digitalWrite(BLUE, LOW);
-        delay(300);
-        digitalWrite(RED, HIGH);
-        digitalWrite(GREEN, LOW);
-        Serial.println("no card incorrect");
-      }
-      Serial.println();
-      Serial.println();
-    }
-  } else {
-    digitalWrite(BLUE, HIGH);
-  }
-  
-  ```
-   
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, LOW);
+delay(300);
+digitalWrite(RED, HIGH);
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, HIGH);
+}
+```
 
 # Resistors 
 What is a resistor? A resistor reduces current flow, adjust signal levels, to divide voltages, bias active elements, and terminate transmission lines, among other uses. Another thing that you guys need to know is that there are two types namely linear resistor and non-linear resistor.
@@ -262,7 +231,7 @@ Here I have a picture of how my project turned out.
 
   # CODE
 
-  
+
 Here is where you guys  can use my code and make the same exact connection I made for this project . 
 
  ```c++

@@ -163,7 +163,8 @@ void loop() {
 
 
                                                  
-  # RGB
+# RGB
+
 What is an RGB? An RGB  emits different colors by mixing the 3 basic colors red, green and blue. The way you can connect your RGB is that you can connect it to your breadboard anywhere you want , but the is four needles and one of the needls is longer than the other one that needle is called a cathode then for the other three wires you can use resistors. For those who don't know what a resistor is I will talk about it in the next section .
 Here is a picture and a code.
 

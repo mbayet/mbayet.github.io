@@ -45,7 +45,111 @@ void setup() {
 What is an RFID? An RFID is used to  to passively identify a tagged object. The way you can connect your rfid is that ther will be letters writen on your rfid and some of them will be digital pins then you will have to connect a 3.3 volt, and your ground because you need your ground for the rfid to work.
 Here is a picture, and a code for the RFID.
 ![Alt text](image-12.png)
+```C++
+/* Include the RFID library */
+#include <RFID.h>
+#define SDA_DIO 53
+#define RESET_DIO 2
+RFID RC522(SDA_DIO, RESET_DIO);
 
+void setup() {
+  Serial.begin(9600);
+  /* Enable the SPI interface */
+  SPI.begin();
+  /* Initialise the RFID reader */
+  RC522.init();
+}
+
+void loop() {
+   if (RC522.isCard()) {
+      /* If so then get its serial number */
+      String cardNumberScanned = "";
+      RC522.readCardSerial();
+      Serial.println("Card detected:");
+      for (int i = 0; i < 5; i++) {
+        // Serial.print(RC522.serNum[i], DEC);
+        cardNumberScanned.concat(RC522.serNum[i]);
+      }
+      Serial.println();
+      Serial.print("card Number: ");
+      Serial.println(cardNumberScanned);
+      if (cardNumberScanned.compareTo("13646395236") == 0) {
+        if (enteredKey == '1') {
+          digitalWrite(RED, LOW);
+          digitalWrite(GREEN, LOW);
+          digitalWrite(BLUE, LOW);
+          delay(300);
+          digitalWrite(RED, LOW);
+          digitalWrite(GREEN, HIGH);
+        } else {
+          Serial.print("incorrect code: ");
+          Serial.println(enteredKey);
+          digitalWrite(RED, LOW);
+          digitalWrite(GREEN, LOW);
+          digitalWrite(BLUE, LOW);
+          delay(300);
+          digitalWrite(RED, HIGH);
+          digitalWrite(GREEN, LOW);
+        }
+
+      } else {
+        digitalWrite(RED, LOW);
+        digitalWrite(GREEN, LOW);
+        digitalWrite(BLUE, LOW);
+        delay(300);
+        digitalWrite(RED, HIGH);
+        digitalWrite(GREEN, LOW);
+        Serial.println("no card incorrect");
+      }
+      Serial.println();
+      Serial.println();
+    }
+  } else {
+    digitalWrite(BLUE, HIGH);
+  }
+
+  ```
+
+  Keypad Code:
+```C++
+#include <Keypad.h>
+//KeyPad begin setup
+const byte ROWS = 4;  //four rows
+const byte COLS = 4;  //four columns
+//define the cymbols on the buttons of the keypads
+char hexaKeys[ROWS][COLS] = {
+  { '1', '2', '3', 'A' },
+  { '4', '5', '6', 'B' },
+  { '7', '8', '9', 'C' },
+  { '*', '0', '#', 'D' }
+};
+byte rowPins[ROWS] = { 23, 27, 31, 35 };  //connect to the row pinouts of the keypad
+byte colPins[COLS] = { 39, 43, 47, 24 };  //connect to the column pinouts of the keypad
+Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
+
+//KeyPad end setup
+
+char customKey = customKeypad.getKey();
+char enteredKey = ' ';
+
+void setup() {
+
+}
+
+void loop() {
+
+ customKey = customKeypad.getKey();
+  if (customKey && enteredKey != customKey) {
+    Serial.println(customKey);
+    enteredKey = customKey;
+  }
+  if (customKey == 'D') {
+    Serial.print(distance);
+    Serial.println("cm");
+  }
+}
+
+```
 
 # Keypad
 What is a keypad? A keypad is like a mini keyboard with numbers and a couple of letters.The wsy you can connect your keypad is that there is eight dgital pin that you will need to connect to the first four will be for the rows and the last four will be for coloms. One thing is that it does not matter where you plug your digital pins .
@@ -60,11 +164,11 @@ Here is a picture and a code .
 What is an RGB? An RGB  emits different colors by mixing the 3 basic colors red, green and blue. The way you can connect your RGB is that you can connect it to your breadboard anywhere you want , but the is four needles and one of the needls is longer than the other one that needle is called a cathode then for the other three wires you can use resistors. For those who don't know what a resistor is I will talk about it in the next section .
 Here is a picture and a code  .
 
-![Alt text](image-14.png)
+  
 
 # Resistors 
 What is a resistor? A resistor reduces current flow, adjust signal levels, to divide voltages, bias active elements, and terminate transmission lines, among other uses. Another thing that you guys need to know is that there are two types namely linear resistor and non-linear resistor.
-Here is a code and a  picture.
+Here is a code and a  picture. 
 
 
 

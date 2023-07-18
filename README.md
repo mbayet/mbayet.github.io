@@ -141,6 +141,7 @@ Here is a picture and a code.
   pinMode(RED, OUTPUT);
   pinMode(GREEN, OUTPUT);
   pinMode(BLUE, OUTPUT);
+  // This part is identifying the outputs 
   digitalWrite(RED, LOW);
   digitalWrite(GREEN, LOW);
   digitalWrite(BLUE, LOW);
@@ -151,9 +152,10 @@ void loop() {
   digitalWrite(RED, LOW);
   digitalWrite(GREEN, LOW);
   digitalWrite(BLUE, LOW);
-  delay(300);
+  // This part is showing that we set our lights to low voltage 
+  delay(300); // 300 micro second delay
   digitalWrite(RED, LOW);
-  digitalWrite(GREEN, HIGH);
+  digitalWrite(GREEN, HIGH); // green light on high voltage 
   digitalWrite(RED, LOW);
   digitalWrite(GREEN, LOW);
   digitalWrite(BLUE, LOW);

@@ -8,14 +8,14 @@ My ultrasonic system it detects how close someone is to my sensor when that hape
 
 
 # Arduino Mega 2560 R3
-In this project I started by having my Arduino Mega 2560 R3 you guys are wondeering how does it work well let me explain.The Arduino Mega 2560  R3 is what I like to call the brain,because it is basicly like a motherboard where everything is controlled,and where you connect your power .  
+In this project I started by having my Arduino Mega 2560 R3 you guys are wondering how does it work well let me explain.The Arduino Mega 2560  R3 is what I like to call the brain,because it is basicly like a motherboard where everything is controlled,and where you connect your power .  
 
 ![Alt text](image.png)
 
 
-
-
-
+# Breadboard
+After already having your arduino mega you will need a breadboard.A breadboard is where you can allow allow easy and quick creation of temporary electronic circuits or to carry out experiments with circuit.
+![Alt text](image-1.png)
 
 
 

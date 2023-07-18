@@ -22,7 +22,9 @@ What is an ultrasonic sensor? An ultrasonic sensor is a sensor that  measures th
 ![Alt text](image-4.png)
 
 # RFID
-
+What is an RFID? An RFID is used to  to passively identify a tagged object. The way you can connect your rfid is that ther will be letters writen on your rfid and some of them will be digital pins then you will have to connect a 3.3 volt, and your groung because you need your ground for the rfid to work.
+Here is a picture you can use so you can connect your rfid.
+![Alt text](image-5.png)
 
 
                                                  

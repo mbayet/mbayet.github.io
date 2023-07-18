@@ -29,20 +29,22 @@ What is an ultrasonic sensor? An ultrasonic sensor is a sensor that  measures th
 #define ECHO_PIN 2
 SR04 sr04 = SR04(ECHO_PIN, TRIG_PIN);
 long distance;
-
+// This part is Identifying wich digital pins the trig and the are going into 
 void setup() {
-  Serial.begin(9600);
-  /* Enable the SPI interface */
-  SPI.begin();
+Serial.begin(9600);
+/* Enable the SPI interface */
+SPI.begin();
 }
-  void loop() {
-  distance = sr04.Distance();
-  // We start with if distance is < 100
-  if (distance < 100) {
-    digitalWrite(BLUE, LOW);
-    // Serial.println("pls scan now");
-  }
-  }
+void loop() {
+distance = sr04.Distance();
+// We start with if distance is < 100
+if (distance < 100) {
+digitalWrite(BLUE, LOW);
+//This section is telling the sensor that if someone is meters the blue light should turn on
+// Serial.println("pls scan now");
+}
+}
+
 # RFID
 
 What is an RFID? An RFID is used to  to passively identify a tagged object. The way you can connect your rfid is that ther will be letters writen on your rfid and some of them will be digital pins then you will have to connect a 3.3 volt, and your ground because you need your ground for the rfid to work.
@@ -54,64 +56,64 @@ Here is a picture, and a code for the RFID.
 #define SDA_DIO 53
 #define RESET_DIO 2
 RFID RC522(SDA_DIO, RESET_DIO);
-
+// This part is Identifying where the pins are located 
 void setup() {
-  Serial.begin(9600);
-  /* Enable the SPI interface */
-  SPI.begin();
-  /* Initialise the RFID reader */
-  RC522.init();
+Serial.begin(9600);
+/* Enable the SPI interface */
+SPI.begin();
+/* Initialise the RFID reader */
+RC522.init();
 }
 
 void loop() {
-   if (RC522.isCard()) {
-      /* If so then get its serial number */
-      String cardNumberScanned = "";
-      RC522.readCardSerial();
-      Serial.println("Card detected:");
-      for (int i = 0; i < 5; i++) {
-        // Serial.print(RC522.serNum[i], DEC);
-        cardNumberScanned.concat(RC522.serNum[i]);
-      }
-      Serial.println();
-      Serial.print("card Number: ");
-      Serial.println(cardNumberScanned);
-      if (cardNumberScanned.compareTo("13646395236") == 0) {
-        if (enteredKey == '1') {
-          digitalWrite(RED, LOW);
-          digitalWrite(GREEN, LOW);
-          digitalWrite(BLUE, LOW);
-          delay(300);
-          digitalWrite(RED, LOW);
-          digitalWrite(GREEN, HIGH);
-        } else {
-          Serial.print("incorrect code: ");
-          Serial.println(enteredKey);
-          digitalWrite(RED, LOW);
-          digitalWrite(GREEN, LOW);
-          digitalWrite(BLUE, LOW);
-          delay(300);
-          digitalWrite(RED, HIGH);
-          digitalWrite(GREEN, LOW);
-        }
+if (RC522.isCard()) {
+ /* If so then get its serial number */
+String cardNumberScanned = "";
+ RC522.readCardSerial();
+ Serial.println("Card detected:");
+for (int i = 0; i < 5; i++) {
+// Serial.print(RC522.serNum[i], DEC);
+cardNumberScanned.concat(RC522.serNum[i]);
+}
+ Serial.println();
+ Serial.print("card Number: ");
+ Serial.println(cardNumberScanned);
+if (cardNumberScanned.compareTo("13646395236") == 0) {
+if (enteredKey == '1') {
+    digitalWrite(RED, LOW);
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, LOW);
+ delay(300);
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, HIGH);
+} else {
+Serial.print("incorrect code: ");
+ Serial.println(enteredKey);
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, LOW);
+ digitalWrite(BLUE, LOW);
+delay(300);
+digitalWrite(RED, HIGH);
+digitalWrite(GREEN, LOW);
+}
 
       } else {
-        digitalWrite(RED, LOW);
-        digitalWrite(GREEN, LOW);
-        digitalWrite(BLUE, LOW);
-        delay(300);
-        digitalWrite(RED, HIGH);
-        digitalWrite(GREEN, LOW);
-        Serial.println("no card incorrect");
-      }
-      Serial.println();
-      Serial.println();
-    }
-  } else {
-    digitalWrite(BLUE, HIGH);
-  }
-
-  ```
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, LOW);
+delay(300);
+digitalWrite(RED, HIGH);
+digitalWrite(GREEN, LOW);
+Serial.println("no card incorrect");
+}
+Serial.println();
+Serial.println();
+}
+} else {
+digitalWrite(BLUE, HIGH);
+}
+```
+  // This part of the code is where you set your lights voltage and also identify your card that you will be scaning 
 
  
 
@@ -128,37 +130,34 @@ const byte ROWS = 4;  //four rows
 const byte COLS = 4;  //four columns
 //define the cymbols on the buttons of the keypads
 char hexaKeys[ROWS][COLS] = {
-  { '1', '2', '3', 'A' },
-  { '4', '5', '6', 'B' },
-  { '7', '8', '9', 'C' },
-  { '*', '0', '#', 'D' }
+{ '1', '2', '3', 'A' },
+{ '4', '5', '6', 'B' },
+{ '7', '8', '9', 'C' },
+{ '*', '0', '#', 'D' }
 };
 byte rowPins[ROWS] = { 23, 27, 31, 35 };  //connect to the row pinouts of the keypad
 byte colPins[COLS] = { 39, 43, 47, 24 };  //connect to the column pinouts of the keypad
 Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
 
 //KeyPad end setup
-
 char customKey = customKeypad.getKey();
 char enteredKey = ' ';
-
 void setup() {
-
+//In this part you are identifying th digital pins for your keypad the rows and the coloms 
 }
-
 void loop() {
 
- customKey = customKeypad.getKey();
-  if (customKey && enteredKey != customKey) {
-    Serial.println(customKey);
-    enteredKey = customKey;
-  }
-  if (customKey == 'D') {
-    Serial.print(distance);
-    Serial.println("cm");
-  }
+customKey = customKeypad.getKey();
+if (customKey && enteredKey != customKey) {
+Serial.println(customKey);
+enteredKey = customKey;
 }
-
+if (customKey == 'D') {
+Serial.print(distance);
+Serial.println("cm");
+}
+}
+// This part is telling the progam to print the distance when you press D wich is our custom key
 ```
 
 
@@ -171,21 +170,21 @@ Here is a picture and a code.
 ![Alt text](image-15.png)
 
 ```C++
-  #define BLUE 2
+#define BLUE 2
 #define GREEN 3
 #define RED 4
-
+// In this part we are identifying the digital pins for the RGB
 void setup() {
   Serial.begin(9600);
 
-  pinMode(RED, OUTPUT);
-  pinMode(GREEN, OUTPUT);
-  pinMode(BLUE, OUTPUT);
-  digitalWrite(RED, LOW);
-  digitalWrite(GREEN, LOW);
-  digitalWrite(BLUE, LOW);
+pinMode(RED, OUTPUT);
+pinMode(GREEN, OUTPUT);
+pinMode(BLUE, OUTPUT);
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, LOW);
 }
-
+// in this part we seting our lights as outputs the seting them as low wich means low voltage 
 void loop() {
 digitalWrite(BLUE, LOW);
 digitalWrite(RED, LOW);
@@ -201,7 +200,7 @@ delay(300);
 digitalWrite(RED, HIGH);
 digitalWrite(GREEN, LOW);
 digitalWrite(RED, LOW);
-
+// in the loop section we are seting our lights color voltage 
 digitalWrite(GREEN, LOW);
 digitalWrite(BLUE, LOW);
 delay(300);
@@ -288,82 +287,82 @@ RST             D9           D8
 /* Create an instance of the RFID library */
 
 void setup() {
-  Serial.begin(9600);
-  /* Enable the SPI interface */
-  SPI.begin();
-  /* Initialise the RFID reader */
-  RC522.init();
+Serial.begin(9600);
+/* Enable the SPI interface */
+SPI.begin();
+/* Initialise the RFID reader */
+RC522.init();
 
-  pinMode(RED, OUTPUT);
-  pinMode(GREEN, OUTPUT);
-  pinMode(BLUE, OUTPUT);
-  digitalWrite(RED, LOW);
-  digitalWrite(GREEN, LOW);
-  digitalWrite(BLUE, LOW);
+pinMode(RED, OUTPUT);
+pinMode(GREEN, OUTPUT);
+pinMode(BLUE, OUTPUT);
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, LOW);
 }
 
 void loop() {
-  distance = sr04.Distance();
-  // We start with if distance is < 100
-  if (distance < 100) {
-    digitalWrite(BLUE, LOW);
-    // Serial.println("pls scan now");
-    if (RC522.isCard()) {
-      /* If so then get its serial number */
-      String cardNumberScanned = "";
-      RC522.readCardSerial();
-      Serial.println("Card detected:");
-      for (int i = 0; i < 5; i++) {
-        // Serial.print(RC522.serNum[i], DEC);
-        cardNumberScanned.concat(RC522.serNum[i]);
-      }
-      Serial.println();
-      Serial.print("card Number: ");
-      Serial.println(cardNumberScanned);
-      if (cardNumberScanned.compareTo("13646392239") == 0) {
-        if (enteredKey == '1') {
-          digitalWrite(RED, LOW);
-          digitalWrite(GREEN, LOW);
-          digitalWrite(BLUE, LOW);
-          delay(300);
-          digitalWrite(RED, LOW);
-          digitalWrite(GREEN, HIGH);
-        } else {
-          Serial.print("incorrect code: ");
-          Serial.println(enteredKey);
-          digitalWrite(RED, LOW);
-          digitalWrite(GREEN, LOW);
-          digitalWrite(BLUE, LOW);
-          delay(300);
-          digitalWrite(RED, HIGH);
-          digitalWrite(GREEN, LOW);
-        }
+distance = sr04.Distance();
+// We start with if distance is < 100
+if (distance < 100) {
+digitalWrite(BLUE, LOW);
+// Serial.println("pls scan now");
+if (RC522.isCard()) {
+/* If so then get its serial number */
+String cardNumberScanned = "";
+RC522.readCardSerial();
+Serial.println("Card detected:");
+for (int i = 0; i < 5; i++) {
+// Serial.print(RC522.serNum[i], DEC);
+cardNumberScanned.concat(RC522.serNum[i]);
+}
+Serial.println();
+ Serial.print("card Number: ");
+ serial.println(cardNumberScanned);
+if (cardNumberScanned.compareTo("13646392239") == 0) {
+if (enteredKey == '1') {
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, LOW);
+delay(300);
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, HIGH);
+} else {
+Serial.print("incorrect code: ");
+Serial.println(enteredKey);
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, LOW);
+delay(300);
+digitalWrite(RED, HIGH);
+digitalWrite(GREEN, LOW);
+}
 
-      } else {
-        digitalWrite(RED, LOW);
-        digitalWrite(GREEN, LOW);
-        digitalWrite(BLUE, LOW);
-        delay(300);
-        digitalWrite(RED, HIGH);
-        digitalWrite(GREEN, LOW);
-        Serial.println("no card incorrect");
-      }
-      Serial.println();
-      Serial.println();
-    }
-  } else {
-    digitalWrite(BLUE, HIGH);
-  }
-  /* Has distance card been detected? */
-  customKey = customKeypad.getKey();
-  if (customKey && enteredKey != customKey) {
-    Serial.println(customKey);
-    enteredKey = customKey;
-  }
-  if (customKey == 'D') {
-    Serial.print(distance);
-    Serial.println("cm");
-  }
+} else {
+digitalWrite(RED, LOW);
+digitalWrite(GREEN, LOW);
+digitalWrite(BLUE, LOW);
+ delay(300);
+digitalWrite(RED, HIGH);
+digitalWrite(GREEN, LOW);
+Serial.println("no card incorrect");
+}
+Serial.println();
+Serial.println();
+}
+} else {
+digitalWrite(BLUE, HIGH);
+}
+/* Has distance card been detected? */
+customKey = customKeypad.getKey();
+if (customKey && enteredKey != customKey) {
+Serial.println(customKey);
+enteredKey = customKey;
+}
+if (customKey == 'D') {
+Serial.print(distance);
+Serial.println("cm");
+}
 }
 ``````
 # tools

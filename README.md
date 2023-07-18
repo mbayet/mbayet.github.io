@@ -252,8 +252,16 @@ Here is a code and a  picture.
 
 
 
+# Picture
+Here I have a picture of how my project turned out.
+
+
+![Alt text](WIN_20230716_23_34_59_Pro-1.jpg)
+
+
+
   # CODE
-Here is where you huys can use my code and make the same exact connection I made for this project . 
+Here is where you guys  can use my code and make the same exact connection I made for this project . 
 
  ```c++
 #include <SPI.h>
